@@ -5,16 +5,16 @@ import getSlides
 
 FPS = 60; WIDTH = 800; HEIGHT = 600
 CAPTION = "slide shower.app"
-version = "beta V1.1"
-ANTIALIASING = True
-PRE_FORMATTED = True
+version = "beta V1.2"
+ANTIALIASING = False
+PRE_FORMATTED = False      #should always be False from now on.
 old_blue = (68, 227, 222)
 bg_color = {False: (140, 212, 209), True: (52, 235, 110) }
 FONT_SIZE = 45
 LINE_GAP = 4
 
 ENTRY_SPLITTER = "\n"
-SLIDES_FILE_PATH = "data/questions01f.txt"
+SLIDES_FILE_PATH = "data/questions01.txt"
 SLIDE_WRAP = False
 
 def main():
@@ -37,6 +37,7 @@ def displayRun() -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                input(progress)
                 quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_d:
