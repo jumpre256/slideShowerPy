@@ -1,0 +1,10 @@
+*.pyc
+*.cpython-312.pyc
+.DS_Store
+done.txt
+todo.txt
+TODO.txt
+plan.txt
+PLAN.txt
+*.sublime-project
+*.sublime-workspace
