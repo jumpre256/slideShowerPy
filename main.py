@@ -64,13 +64,13 @@ def displayRun() -> None:
         clock.tick(FPS)
 
 def prototype():
-    testData0 = getSlides.getSlides("testData/dogData1.txt", ";")
+    testSlides = ["test"]
     currentIndex = 0
     while True:
-        usrInput = input(testData0[currentIndex])
+        usrInput = input(testSlides[currentIndex])
         if usrInput == "quit":
             quit()
-        currentIndex = (currentIndex + 1) % len(testData0)
+        currentIndex = (currentIndex + 1) % len(testSlides)
 
 if __name__ == "__main__":
     main()
