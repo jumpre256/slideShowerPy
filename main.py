@@ -1,8 +1,12 @@
 import pygame #SDL in the background. #will have text ready-to-use.
+import drawText
 import getSlides
 
 FPS = 60; WIDTH = 800; HEIGHT = 600
 ANTIALIASING = True
+bg_color = (68, 227, 222)
+FONT_SIZE = 45
+LINE_GAP = 4
 
 testData0 = ["1. Introduction.", "2. About atoms.", "3. Molecules",
     "4. Why you should care."]
@@ -15,15 +19,26 @@ def displayRun() -> None:
     pygame.init()
     window = pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption("client")
+    drawText.window = window
+    drawText.antialiasing = ANTIALIASING
     clock = pygame.time.Clock()
+
+    slides = getSlides.getSlides("testData/dogData.txt")
+    slideIndex = 0
+
     while True:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_d:
+                    #print("pressed d.")
+                    slideIndex = (slideIndex + 1) % len(slides)
 
-        window.fill( (255, 255, 0) )
+        window.fill(bg_color)
+        drawText.draw_text_topleft(slides[slideIndex], 0, 0, FONT_SIZE)
         pygame.display.update()
         clock.tick(FPS)
 
