@@ -1,5 +1,6 @@
 import pygame #SDL in the background. #will have text ready-to-use.
 import drawText
+import textWrap
 import getSlides
 
 FPS = 60; WIDTH = 800; HEIGHT = 600
@@ -17,7 +18,7 @@ def main():
 
 def displayRun() -> None:
     pygame.init()
-    window = pygame.display.set_mode((WIDTH,HEIGHT))
+    window = pygame.display.set_mode((WIDTH,HEIGHT), pygame.RESIZABLE)
     pygame.display.set_caption("client")
     drawText.window = window
     drawText.antialiasing = ANTIALIASING
@@ -38,7 +39,14 @@ def displayRun() -> None:
                     slideIndex = (slideIndex + 1) % len(slides)
 
         window.fill(bg_color)
-        drawText.draw_text_topleft(slides[slideIndex], 0, 0, FONT_SIZE)
+        winWidth = window.get_size()[0]
+        textObjects = textWrap.getTextObjects(winWidth, FONT_SIZE, slides[slideIndex])
+        i = 0
+        for text in textObjects:
+            h = (FONT_SIZE+LINE_GAP) * i
+            drawText.draw_text_topleft(text, 0, h, FONT_SIZE)
+            i += 1
+        #drawText.draw_text_topleft(slides[slideIndex], 0, 0, FONT_SIZE)
         pygame.display.update()
         clock.tick(FPS)
 
