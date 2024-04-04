@@ -6,5 +6,6 @@ todo.txt
 TODO.txt
 plan.txt
 PLAN.txt
+*.txt
 *.sublime-project
 *.sublime-workspace
