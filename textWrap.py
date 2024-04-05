@@ -9,9 +9,6 @@ def __getTextObjects_preformatted(text: str) -> list:
 	return text.split("\\n")
 
 def __getTextObjects_nonPreformatted(displayWidth, fontSize, text: str) -> list:
-	return __getTextObjects_nonPreformatted_scannerApproach(displayWidth, fontSize, text)
-
-def __getTextObjects_nonPreformatted_scannerApproach(displayWidth, fontSize, text: str) -> list:
 	#print("len(text)", len(text))
 	charsPerLine = int(displayWidth//(fontSize*0.48)) - 1
 	#print("charsPerLine", charsPerLine)
@@ -34,23 +31,4 @@ def __getTextObjects_nonPreformatted_scannerApproach(displayWidth, fontSize, tex
 		if len(textObject) > 0:
 			#print("len(textObject)", len(textObject))
 			textObjects.append(textObject.strip())
-	return textObjects
-
-
-def __getTextObjects_nonPreformatted_naieveApproach(displayWidth, fontSize, text: str) -> list:
-	charsPerLine = int(displayWidth//(fontSize*0.48))
-	#print("charsPerLine", charsPerLine)
-	textObjects = []
-	lastChar = " "
-	i = 0
-	while i < len(text):
-		#print("lastChar", lastChar)
-		textPiece = text[i:i+charsPerLine]
-		textPrepend = ""
-		if lastChar != " " and textPiece[0] != " ":
-			textPrepend = "-"
-		textPiece = textPrepend + textPiece
-		lastChar = textPiece[len(textPiece) - 1]
-		textObjects.append(textPiece)
-		i += charsPerLine
 	return textObjects

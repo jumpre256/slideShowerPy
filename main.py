@@ -7,7 +7,6 @@ FPS = 60; WIDTH = 800; HEIGHT = 600
 CAPTION = "slide shower.app"
 version = "beta V1.2"
 ANTIALIASING = False
-PRE_FORMATTED = False      #should always be False from now on.
 old_blue = (68, 227, 222)
 bg_color = {False: (140, 212, 209), True: (52, 235, 110) }
 FONT_SIZE = 45
@@ -55,7 +54,7 @@ def displayRun() -> None:
 
         window.fill(bg_color[progress[slideIndex]])
         winWidth = window.get_size()[0]
-        textObjects = textWrap.getTextObjects(winWidth, FONT_SIZE, slides[slideIndex], PRE_FORMATTED)
+        textObjects = textWrap.getTextObjects(winWidth, FONT_SIZE, slides[slideIndex])
         i = 0
         for text in textObjects:
             h = (FONT_SIZE+LINE_GAP) * i
@@ -63,15 +62,6 @@ def displayRun() -> None:
             i += 1
         pygame.display.update()
         clock.tick(FPS)
-
-def prototype():
-    testSlides = ["test"]
-    currentIndex = 0
-    while True:
-        usrInput = input(testSlides[currentIndex])
-        if usrInput == "quit":
-            quit()
-        currentIndex = (currentIndex + 1) % len(testSlides)
 
 if __name__ == "__main__":
     main()
